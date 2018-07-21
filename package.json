@@ -9,13 +9,31 @@
   "scripts": {
     "build": "./node_modules/.bin/tsc",
     "watch": "./node_modules/.bin/tsc -w",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "echo TBD",
+    "lint": "tslint -c ./tslint.json -p ./tsconfig.json",
     "electron": "./node_modules/.bin/electron ./dist/main.js",
+    "precommit": "yarn lint && yarn test",
+    "commit": "git-cz",
     "start": "yarn build && yarn electron"
   },
   "devDependencies": {
+    "commitizen": "^2.10.1",
+    "cz-customizable": "^5.2.0",
     "electron": "^2.0.5",
+    "prettier": "^1.13.7",
     "tslint": "^5.11.0",
+    "tslint-clean-code": "^0.2.7",
+    "tslint-immutable": "^4.6.0",
+    "tslint-react": "^3.6.0",
+    "tslint-sonarts": "^1.7.0",
     "typescript": "^2.9.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.js"
+    }
   }
 }

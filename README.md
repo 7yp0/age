@@ -4,10 +4,24 @@ This is the beginning of Adventure Game Engine build with TypeScript, React and 
 
 ## TODO
 
-- configure tslint (with eslint rules also)
+- add commitizen
+
+- add docker
 
 - add .env files
 
+- add jest
+
 - add webpack
 
-- add simple react app
+- lodash/fp
+
+- add simple react app (with recompose)
+
+- add redux with reselect
+
+- add styling with styled components
+
+- add rxjs
+
+- make webgl demo

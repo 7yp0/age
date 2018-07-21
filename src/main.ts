@@ -1,7 +1,9 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
-let mainWindow: Electron.BrowserWindow;
+/* tslint:disable:no-let no-expression-statement no-if-statement */
+
+let mainWindow: Electron.BrowserWindow | null;
 
 function closeWindow() {
   // Dereference the window object, usually you would store windows

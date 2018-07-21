@@ -3,6 +3,7 @@
     "module": "commonjs",
     "removeComments": true,
     "noImplicitAny": true,
+    "strict": true,
     "sourceMap": true,
     "jsx": "react",
     "target": "es5",
