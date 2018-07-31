@@ -6,16 +6,13 @@
     "strict": true,
     "sourceMap": true,
     "jsx": "react",
-    "target": "es5",
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*"
-      ]
-    }
+    "target": "es6",
+    "outDir": "./dist"
   },
   "include": [
-    "./src/**/*"
+    "./src/main.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

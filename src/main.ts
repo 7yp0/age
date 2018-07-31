@@ -3,7 +3,7 @@ import * as path from 'path';
 
 // TODO: dev only
 // tslint:disable-next-line:no-require-imports no-expression-statement no-var-requires
-require('electron-reload')(path.join(__dirname, '..'), {
+require('electron-reload')(path.join(__dirname, './main.ts'), {
   electron: path.join(__dirname, '..', 'node_modules', '.bin', 'electron'),
 });
 

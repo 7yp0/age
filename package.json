@@ -7,27 +7,37 @@
   "author": "Michael Lueckgen <michael.lueckgen@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "./node_modules/.bin/tsc",
-    "watch": "./node_modules/.bin/tsc -w",
     "test": "echo TBD",
     "lint": "tslint -c ./tslint.json -p ./tsconfig.json",
-    "electron": "./node_modules/.bin/electron ./dist/main.js",
     "precommit": "yarn lint && yarn test",
     "commit": "git-cz",
-    "start": "yarn build && yarn electron"
+    "build": "./node_modules/.bin/webpack && ./node_modules/.bin/tsc",
+    "build:production": "./node_modules/.bin/webpack --config ./webpack.config.production.js && ./node_modules/.bin/tsc",
+    "electron": "./node_modules/.bin/electron ./dist/main.js",
+    "start": "yarn build & yarn electron",
+    "dist": "yarn build:production && /node_modules/.bin/electron-builder"
   },
   "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/node": "^10.5.4",
+    "@types/react": "^16.4.7",
+    "@types/react-dom": "^16.0.6",
     "commitizen": "^2.10.1",
     "cz-customizable": "^5.2.0",
     "electron": "^2.0.5",
     "electron-reload": "^1.2.5",
+    "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.13.7",
+    "ts-loader": "^4.4.2",
     "tslint": "^5.11.0",
     "tslint-clean-code": "^0.2.7",
     "tslint-immutable": "^4.6.0",
     "tslint-react": "^3.6.0",
     "tslint-sonarts": "^1.7.0",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "config": {
     "commitizen": {
@@ -36,5 +46,9 @@
     "cz-customizable": {
       "config": ".cz-config.js"
     }
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   }
 }
