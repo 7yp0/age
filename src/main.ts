@@ -1,12 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
-// TODO: dev only
-// tslint:disable-next-line:no-require-imports no-expression-statement no-var-requires
-require('electron-reload')(path.join(__dirname, './main.ts'), {
-  electron: path.join(__dirname, '..', 'node_modules', '.bin', 'electron'),
-});
-
 /* tslint:disable:no-let no-expression-statement no-if-statement */
 
 let mainWindow: Electron.BrowserWindow | null;
@@ -21,7 +15,7 @@ function closeWindow() {
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
 
-  mainWindow.loadFile(path.join(__dirname, '..', 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // TODO: dev only
   mainWindow.webContents.openDevTools();

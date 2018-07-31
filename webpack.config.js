@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   entry: ["./src/index.tsx"],
@@ -24,7 +25,13 @@ const config = {
         use: ["ts-loader"]
       }
     ]
-  }
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/views/index.html'
+    })
+  ]
 };
 
 module.exports = config;

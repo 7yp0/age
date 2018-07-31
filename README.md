@@ -4,9 +4,9 @@ An Adventure Game Engine build with TypeScript, React and WebGL
 
 ## TODO
 
-- add docker
-
 - add .env files
+
+- test build process
 
 - add simple react app (with recompose)
 

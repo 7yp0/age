@@ -11,10 +11,11 @@
     "lint": "tslint -c ./tslint.json -p ./tsconfig.json",
     "precommit": "yarn lint && yarn test",
     "commit": "git-cz",
-    "build": "./node_modules/.bin/webpack && ./node_modules/.bin/tsc",
-    "build:production": "./node_modules/.bin/webpack --config ./webpack.config.production.js && ./node_modules/.bin/tsc",
+    "build": "./node_modules/.bin/tsc",
+    "build:production": "./node_modules/.bin/tsc && ./node_modules/.bin/webpack --config ./webpack.config.production.js",
+    "watch": "./node_modules/.bin/webpack",
     "electron": "./node_modules/.bin/electron ./dist/main.js",
-    "start": "yarn build & yarn electron",
+    "start": "yarn build; yarn watch & yarn electron",
     "dist": "yarn build:production && /node_modules/.bin/electron-builder"
   },
   "devDependencies": {
@@ -25,7 +26,6 @@
     "commitizen": "^2.10.1",
     "cz-customizable": "^5.2.0",
     "electron": "^2.0.5",
-    "electron-reload": "^1.2.5",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.13.7",
     "ts-loader": "^4.4.2",
@@ -36,8 +36,7 @@
     "tslint-sonarts": "^1.7.0",
     "typescript": "^2.9.2",
     "webpack": "^4.16.3",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-cli": "^3.1.0"
   },
   "config": {
     "commitizen": {
