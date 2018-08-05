@@ -6,7 +6,7 @@ An Adventure Game Engine build with TypeScript, React and WebGL
 
 - test build process
 
-- add simple react app (with recompose)
+- draw something on canvas
 
 - add jest
 

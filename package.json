@@ -11,11 +11,11 @@
     "lint": "tslint -c ./tslint.json -p ./tsconfig.json",
     "precommit": "yarn lint && yarn test",
     "commit": "git-cz",
-    "build:tsc": "./node_modules/.bin/tsc",
-    "build:webpack": "./node_modules/.bin/webpack",
-    "build": "yarn build:tsc && yarn build:webpack",
+    "build:main": "./node_modules/.bin/webpack --config webpack.config.main.js",
+    "build:renderer": "./node_modules/.bin/webpack",
+    "build": "yarn build:main && yarn build:renderer",
     "electron": "./node_modules/.bin/electron ./dist/main.js",
-    "start": "yarn build:tsc; DEBUG=true yarn build:webpack & DEBUG=true yarn electron",
+    "start": "yarn build:main && (yarn build:renderer & yarn electron)",
     "dist": "yarn build && /node_modules/.bin/electron-builder"
   },
   "devDependencies": {
@@ -48,8 +48,5 @@
       "config": ".cz-config.js"
     }
   },
-  "dependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
-  }
+  "dependencies": {}
 }

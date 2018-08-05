@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
-const IS_DEBUG: boolean = Boolean(process.env.DEBUG);
+import config from './config';
 
 /* tslint:disable:no-let no-expression-statement no-if-statement */
 
@@ -15,11 +15,13 @@ function closeWindow() {
 }
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  const { windowWidth, windowHeight } = config;
 
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow = new BrowserWindow({ width: windowWidth, height: windowHeight });
 
-  if (IS_DEBUG) {
+  mainWindow.loadFile(path.resolve(__dirname, 'index.html'));
+
+  if (config.isDebug) {
     mainWindow.webContents.openDevTools();
   }
   // Emitted when the window is closed.

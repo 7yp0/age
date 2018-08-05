@@ -114,6 +114,7 @@
     "no-object-mutation": true,
     "no-this": true,
     "readonly-keyword": true,
-    "readonly-array": true
+    "readonly-array": true,
+    "object-literal-sort-keys": false
   }
 }

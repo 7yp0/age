@@ -1,31 +1,32 @@
 const path = require("path");
 const Dotenv = require('dotenv-webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 require('dotenv').config();
 
 const IS_DEBUG = process.env.DEBUG || false;
 
 const developmentConfig = {
-  watch: true,
   mode: 'development',
   devtool: 'eval',
 };
 
 const productionConfig = {
-  watch: false,
   mode: 'production',
 };
 
 const additionalConfig = IS_DEBUG ? developmentConfig : productionConfig;
 
 const config = {
-  entry: ["./src/index.ts"],
+  entry: ["./src/main.ts"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "main.js"
   },
 
-  target: 'electron-renderer',
+  target: 'electron-main',
+  node: {
+    __dirname: false
+  },
+
 
   resolve: {
     extensions: ['.ts', '.js']
@@ -47,9 +48,6 @@ const config = {
       safe: true,
       systemvars: true,
       silent: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/views/index.html'
     })
   ]
 };
