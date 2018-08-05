@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
+const IS_DEBUG: boolean = Boolean(process.env.DEBUG);
+
 /* tslint:disable:no-let no-expression-statement no-if-statement */
 
 let mainWindow: Electron.BrowserWindow | null;
@@ -17,9 +19,9 @@ function createWindow() {
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
-  // TODO: dev only
-  mainWindow.webContents.openDevTools();
-
+  if (IS_DEBUG) {
+    mainWindow.webContents.openDevTools();
+  }
   // Emitted when the window is closed.
   mainWindow.on('closed', closeWindow);
 }

@@ -11,12 +11,12 @@
     "lint": "tslint -c ./tslint.json -p ./tsconfig.json",
     "precommit": "yarn lint && yarn test",
     "commit": "git-cz",
-    "build": "./node_modules/.bin/tsc",
-    "build:production": "./node_modules/.bin/tsc && ./node_modules/.bin/webpack --config ./webpack.config.production.js",
-    "watch": "./node_modules/.bin/webpack",
+    "build:tsc": "./node_modules/.bin/tsc",
+    "build:webpack": "./node_modules/.bin/webpack",
+    "build": "yarn build:tsc && yarn build:webpack",
     "electron": "./node_modules/.bin/electron ./dist/main.js",
-    "start": "yarn build; yarn watch & yarn electron",
-    "dist": "yarn build:production && /node_modules/.bin/electron-builder"
+    "start": "yarn build:tsc; DEBUG=true yarn build:webpack & DEBUG=true yarn electron",
+    "dist": "yarn build && /node_modules/.bin/electron-builder"
   },
   "devDependencies": {
     "@types/electron": "^1.6.10",
@@ -25,6 +25,8 @@
     "@types/react-dom": "^16.0.6",
     "commitizen": "^2.10.1",
     "cz-customizable": "^5.2.0",
+    "dotenv": "^6.0.0",
+    "dotenv-webpack": "^1.5.7",
     "electron": "^2.0.5",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.13.7",
