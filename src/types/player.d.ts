@@ -1,0 +1,1 @@
+interface Player extends MoveableEntity {}

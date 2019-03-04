@@ -1,57 +1,50 @@
-const path = require("path");
-const Dotenv = require('dotenv-webpack');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-require('dotenv').config();
 
-const IS_DEBUG = process.env.DEBUG || false;
+const env = process.env.NODE_ENV;
 
-const developmentConfig = {
-  watch: true,
-  mode: 'development',
-  devtool: 'eval',
-};
-
-const productionConfig = {
-  watch: false,
-  mode: 'production',
-};
-
-const additionalConfig = IS_DEBUG ? developmentConfig : productionConfig;
-
-const config = {
-  entry: ["./src/index.ts"],
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
-  },
-
-  target: 'electron-renderer',
-
-  resolve: {
-    extensions: ['.ts', '.js']
-  },
-
-  ...additionalConfig,
-
+module.exports = {
+  entry: ['@babel/polyfill', './src/index.ts'],
+  mode: env || 'development',
+  devtool: 'inline-source-map',
+  ...(env === 'production' ? {} : {
+    devServer: {
+      contentBase: './dist',
+      publicPath: '/',
+      open: true,
+      overlay: true,
+    },
+  }),
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './views/index.html'
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.ts?$/,
-        use: ["ts-loader"]
+        test: /\.tsx?$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(svg|png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
-
-  plugins: [
-    new Dotenv({
-      safe: true,
-      systemvars: true,
-      silent: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/views/index.html'
-    })
-  ]
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
 };
-
-module.exports = config;
